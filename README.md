@@ -1,16 +1,5 @@
 # Fleet Document Intelligence Platform
 
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-0.3-1C3C3C?logo=langchain&logoColor=white)
-![OpenAI](https://img.shields.io/badge/OpenAI-API-412991?logo=openai&logoColor=white)
-![Postgres](https://img.shields.io/badge/PostgreSQL-pgvector-4169E1?logo=postgresql&logoColor=white)
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-planned-326CE5?logo=kubernetes&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-EKS%20planned-FF9900?logo=amazonwebservices&logoColor=white)
-
 An end-to-end system that ingests fleet & leasing documents (invoices, leasing
 contracts, damage reports, vehicle registrations), extracts **structured, validated
 data** with an LLM, stores it, and (in later phases) lets you query the whole corpus
@@ -19,9 +8,8 @@ via a German RAG chatbot and act on documents with an autonomous agent.
 Built to mirror the kind of AI-supported process automation a fleet leasing company
 actually needs: turning unstructured documents into structured, actionable data.
 
-> **Status:** Phases 1, 2 & 4 complete — extraction service, RAG chatbot, and React
-> frontend, all runnable with one command. Phases 3, 5 & 6 (LangGraph agent + n8n,
-> Kubernetes, AWS EKS) are on the roadmap below.
+> **Status:** Phase 1 complete — extraction service + database, runnable with one command.
+> Phases 2–6 (RAG chatbot, agent, n8n orchestration, Kubernetes, AWS EKS) are on the roadmap below.
 
 ## Why this design
 
@@ -141,15 +129,5 @@ Tests mock the LLM, so they run fast and need no model — they verify the logic
 
 ## Tech stack
 
-**Backend & AI:** Python 3.12 · FastAPI · LangChain · Pydantic v2 · OpenAI
-(gpt-4o-mini + text-embedding-3-small) — provider-agnostic, also supports Anthropic,
-AWS Bedrock, and local Ollama
-
-**Data:** PostgreSQL 16 · pgvector (vector similarity search) · SQLAlchemy 2.0
-
-**Frontend:** React 18 · Vite · nginx (production serving + API proxy)
-
-**Infrastructure:** Docker · Docker Compose · Kubernetes + AWS EKS (planned)
-
-**Quality:** pytest (LLM mocked for fast, deterministic tests) · type hints · multi-stage
-Docker builds running as non-root
+Python 3.12 · FastAPI · LangChain · Pydantic v2 · SQLAlchemy 2.0 · PostgreSQL +
+pgvector · Ollama · Docker · (Kubernetes + AWS EKS to come)
