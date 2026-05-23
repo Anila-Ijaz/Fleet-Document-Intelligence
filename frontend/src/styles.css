@@ -1,0 +1,180 @@
+/* Fleet Document Intelligence — refined industrial theme.
+   Restrained palette, precise spacing, one strong accent. Built to read as a
+   serious enterprise tool, not a generic dashboard. */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --bg: #0d0f12;
+  --surface: #14171c;
+  --surface-2: #1b1f26;
+  --border: #262b33;
+  --text: #e8eaed;
+  --text-dim: #9aa1ab;
+  --text-faint: #5f6671;
+  --accent: #ff5f1f;          /* signal orange — single strong accent */
+  --accent-dim: #c94a18;
+  --ok: #3ecf8e;
+  --warn: #f5b342;
+  --mono: "Space Mono", monospace;
+  --sans: "Sora", system-ui, sans-serif;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 64px;
+}
+
+/* Header */
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 28px 0 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.masthead h1 {
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+.masthead .tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.masthead .meta { font-family: var(--mono); font-size: 11px; color: var(--text-faint); }
+
+/* Layout grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+/* Panels */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.panel h2 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel h2::before {
+  content: "";
+  width: 6px; height: 6px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* Dropzone */
+.dropzone {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 36px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.dropzone:hover, .dropzone.drag { border-color: var(--accent); background: var(--surface-2); }
+.dropzone p { color: var(--text-dim); font-size: 14px; }
+.dropzone .hint { font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-top: 8px; }
+
+/* Buttons */
+button {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 13px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background .15s;
+}
+button:hover { background: var(--accent-dim); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+button.ghost { background: transparent; border: 1px solid var(--border); color: var(--text-dim); }
+button.ghost:hover { border-color: var(--accent); color: var(--text); }
+
+/* Document table */
+.doc-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.doc-row .fn { font-family: var(--mono); font-size: 12px; color: var(--text); }
+.doc-row .sub { color: var(--text-faint); font-size: 11px; }
+.badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.badge.review { color: var(--warn); border-color: var(--warn); }
+.badge.ok { color: var(--ok); border-color: var(--ok); }
+
+/* Chat */
+.chat-log { display: flex; flex-direction: column; gap: 16px; margin-bottom: 18px; min-height: 120px; }
+.msg { font-size: 14px; }
+.msg.user { color: var(--text); }
+.msg.user .who { color: var(--accent); }
+.msg.bot { color: var(--text); background: var(--surface-2); padding: 14px; border-radius: var(--radius); border: 1px solid var(--border); }
+.who { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 6px; color: var(--text-faint); }
+.sources { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 10px; }
+.source { font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-bottom: 6px; }
+.source .sim { color: var(--ok); }
+
+.chat-input { display: flex; gap: 8px; }
+.chat-input input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  padding: 10px 14px;
+}
+.chat-input input:focus { outline: none; border-color: var(--accent); }
+
+.status { font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-top: 12px; }
+.error { color: var(--accent); }
+.spinner { display: inline-block; animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100% { opacity: .3; } 50% { opacity: 1; } }

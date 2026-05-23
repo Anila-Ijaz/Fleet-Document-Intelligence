@@ -1,0 +1,24 @@
+Autohaus München GmbH
+Landsberger Straße 110
+80339 München
+
+RECHNUNG
+
+Rechnungsnummer: RE-2026-00842
+Rechnungsdatum: 15.03.2026
+Kunde: Alphabet Fleet Management GmbH
+
+Fahrzeug: BMW 320d Touring
+Fahrgestellnummer (FIN): WBA8E9C50JA123456
+Kennzeichen: M-AF 1234
+
+Position                          Menge    Einzelpreis    Gesamt
+Inspektion (Großer Service)         1       450,00 EUR     450,00 EUR
+Bremsbeläge vorne                   1       180,00 EUR     180,00 EUR
+Ölwechsel inkl. Filter              1        95,00 EUR      95,00 EUR
+
+Nettobetrag:                                              725,00 EUR
+MwSt. 19%:                                                137,75 EUR
+Gesamtbetrag (Brutto):                                    862,75 EUR
+
+Zahlbar innerhalb von 14 Tagen ohne Abzug.

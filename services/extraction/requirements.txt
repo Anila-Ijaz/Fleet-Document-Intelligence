@@ -1,0 +1,17 @@
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic==2.10.3
+pydantic-settings==2.7.0
+sqlalchemy==2.0.36
+psycopg[binary]==3.2.3
+pypdf==5.1.0
+python-multipart==0.0.18
+
+# LangChain core + provider packages. Only the provider you use needs to resolve at
+# runtime, but listing them keeps the image flexible.
+langchain==0.3.9
+langchain-core==0.3.21
+langchain-ollama==0.2.1
+langchain-openai==0.2.10
+langchain-anthropic==0.3.0
+langchain-aws==0.2.7

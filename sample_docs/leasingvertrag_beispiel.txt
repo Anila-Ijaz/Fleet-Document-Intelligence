@@ -1,0 +1,20 @@
+LEASINGVERTRAG
+
+Vertragsnummer: LV-2026-1199
+Vertragsdatum: 01.02.2026
+
+Leasinggeber: Alphabet Fleet Management GmbH, München
+Leasingnehmer: Mustermann Logistik GmbH, Augsburg
+
+Fahrzeugdaten:
+Marke: MINI
+Modell: Cooper SE
+Fahrgestellnummer (FIN): WMW11DJ0XN2T98765
+Kennzeichen: A-ML 4567
+
+Vertragslaufzeit: 01.03.2026 bis 28.02.2029
+Monatliche Leasingrate: 389,00 EUR
+Jährliche Fahrleistung: 15.000 km
+
+Der Leasingnehmer verpflichtet sich zur regelmäßigen Wartung gemäß
+Herstellervorgaben. Schäden sind unverzüglich zu melden.
