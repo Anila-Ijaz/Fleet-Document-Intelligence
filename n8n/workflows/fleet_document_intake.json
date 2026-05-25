@@ -1,0 +1,176 @@
+{
+  "name": "Fleet Document Intake Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fleet-intake",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Document Received (Webhook)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "fleet-intake"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://extraction:8000/documents",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "call-extraction",
+      "name": "Extract Fields (LLM)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://agent:8000/triage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  document_type: $json.fields.document_type,\n  confidence: $json.confidence,\n  gross_amount: $json.fields.gross_amount,\n  supplier_name: $json.fields.supplier_name,\n  summary: $json.fields.summary\n}) }}",
+        "options": {}
+      },
+      "id": "call-agent",
+      "name": "Triage (LangGraph Agent)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": { "caseSensitive": true },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "escalate",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ]
+              },
+              "outputKey": "Escalate"
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "flag_for_review",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ]
+              },
+              "outputKey": "Review"
+            }
+          ]
+        },
+        "fallbackOutput": "extra",
+        "options": {}
+      },
+      "id": "switch-action",
+      "name": "Route by Action",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "outcome",
+              "value": "=Eskaliert an Fachabteilung. Notiz: {{ $json.draft_reply }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "handle-escalate",
+      "name": "Notify: Escalate",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1140, 180]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "outcome",
+              "value": "=Zur Pruefung markiert. Notiz: {{ $json.draft_reply }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "handle-review",
+      "name": "Queue: Review",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1140, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "outcome",
+              "value": "Automatisch freigegeben.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "handle-approve",
+      "name": "Auto-Approve",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1140, 420]
+    }
+  ],
+  "connections": {
+    "Document Received (Webhook)": {
+      "main": [[{ "node": "Extract Fields (LLM)", "type": "main", "index": 0 }]]
+    },
+    "Extract Fields (LLM)": {
+      "main": [[{ "node": "Triage (LangGraph Agent)", "type": "main", "index": 0 }]]
+    },
+    "Triage (LangGraph Agent)": {
+      "main": [[{ "node": "Route by Action", "type": "main", "index": 0 }]]
+    },
+    "Route by Action": {
+      "main": [
+        [{ "node": "Notify: Escalate", "type": "main", "index": 0 }],
+        [{ "node": "Queue: Review", "type": "main", "index": 0 }],
+        [{ "node": "Auto-Approve", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "fleet" }, { "name": "document-automation" }]
+}
