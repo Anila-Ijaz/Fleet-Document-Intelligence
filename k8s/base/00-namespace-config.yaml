@@ -1,0 +1,32 @@
+# Namespace + shared config + secret for the whole platform.
+# The secret here is a TEMPLATE - never commit a real key. In EKS you'd use an
+# external secrets manager; for local kind, create it from your .env (see k8s/README.md).
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: fleet
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fleet-config
+  namespace: fleet
+data:
+  DATABASE_URL: "postgresql+psycopg://fleet:fleet@db:5432/fleet"
+  LLM_PROVIDER: "openai"
+  LLM_MODEL: "gpt-4o-mini"
+  EMBEDDING_PROVIDER: "openai"
+  EMBEDDING_MODEL: "text-embedding-3-small"
+  EMBEDDING_DIM: "1536"
+  LOG_LEVEL: "INFO"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: fleet-secrets
+  namespace: fleet
+type: Opaque
+stringData:
+  # Replace via: kubectl -n fleet create secret generic fleet-secrets \
+  #   --from-literal=OPENAI_API_KEY=sk-... --dry-run=client -o yaml | kubectl apply -f -
+  OPENAI_API_KEY: "REPLACE_ME"
