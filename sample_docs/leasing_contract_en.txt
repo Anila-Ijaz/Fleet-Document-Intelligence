@@ -1,0 +1,60 @@
+VEHICLE LEASING CONTRACT
+
+Contract No:   LC-2024-0087
+Contract Date: 01 February 2024
+
+LESSOR:
+Apex Fleet Leasing Ltd.
+100 Finance Street, London, EC2V 8RF
+Company No: 09876543
+
+LESSEE:
+Horizon Logistics Ltd.
+78 Warehouse Lane, Leeds, LS11 5QA
+Company No: 07654321
+Contact: James Harrison, Fleet Manager
+
+VEHICLE DETAILS:
+Make:              Volkswagen
+Model:             Crafter 35 TDI
+Year:              2024
+VIN:               WV1ZZZ2EZM5012345
+Registration:      YD24 ABC
+Colour:            White
+Engine:            2.0 TDI, 140 bhp
+
+LEASE TERMS:
+Lease Duration:    48 months (4 years)
+Start Date:        01 March 2024
+End Date:          28 February 2028
+Annual Mileage:    25,000 miles
+Total Contract Mileage: 100,000 miles
+Excess Mileage Charge:  £0.12 per mile
+
+FINANCIAL TERMS:
+Initial Rental (x3):   £2,850.00 (paid upfront)
+Monthly Rental:        £ 950.00 (excl. VAT)
+VAT (20%):             £ 190.00
+Monthly Total:         £1,140.00
+
+Maintenance Package:   Included (tyres, servicing, brakes)
+Road Fund Licence:     Included for full contract term
+GAP Insurance:         Not included
+
+EARLY TERMINATION:
+Termination before 24 months: 50% of remaining rentals
+Termination after 24 months:  25% of remaining rentals
+
+END OF CONTRACT OPTIONS:
+- Return vehicle (fair wear and tear policy applies)
+- Extend lease on a rolling monthly basis
+- Purchase option: not available on this contract
+
+FAIR WEAR AND TEAR:
+Vehicle must be returned in line with BVRLA fair wear and tear guidelines.
+Damage beyond fair wear and tear will be charged at repair cost.
+
+Both parties agree to the terms and conditions set out in this contract.
+
+Lessor Signature: ___________________   Date: 01/02/2024
+Lessee Signature: ___________________   Date: 01/02/2024
