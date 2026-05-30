@@ -16,24 +16,24 @@ from app.services.vectorstore import similarity_search
 
 logger = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = """Du bist ein Assistent für ein Flottenmanagement-Unternehmen. \
-Beantworte Fragen ausschließlich auf Basis des bereitgestellten Kontexts aus internen \
-Dokumenten (Rechnungen, Leasingverträge, Schadensmeldungen, Fahrzeugscheine).
+SYSTEM_PROMPT = """You are an assistant for a fleet management company. \
+Answer questions strictly based on the provided context from internal documents \
+(invoices, leasing contracts, damage reports, vehicle registrations).
 
-Regeln:
-- Antworte auf Deutsch.
-- Nutze NUR Informationen aus dem Kontext. Wenn die Antwort nicht im Kontext steht, \
-sage klar: "Diese Information ist in den vorliegenden Dokumenten nicht enthalten."
-- Verweise bei Aussagen auf die Quelle mit der Markierung [Quelle N].
-- Erfinde keine Zahlen, Namen oder Fakten.
+Rules:
+- Answer in English.
+- Use ONLY information from the context. If the answer is not in the context, \
+clearly state: "This information is not available in the provided documents."
+- Reference sources using the marker [Source N].
+- Do not invent numbers, names, or facts.
 """
 
-USER_PROMPT = """Frage: {question}
+USER_PROMPT = """Question: {question}
 
-Kontext aus den Dokumenten:
+Context from documents:
 {context}
 
-Beantworte die Frage präzise und gib die Quellen an."""
+Answer the question precisely and cite your sources."""
 
 
 def _format_context(chunks: list[dict]) -> str:
@@ -54,8 +54,8 @@ def answer_question(question: str, top_k: int | None = None) -> dict:
     chunks = similarity_search(question, top_k=top_k)
     if not chunks:
         return {
-            "answer": "Es sind noch keine Dokumente indexiert, "
-            "daher kann die Frage nicht beantwortet werden.",
+            "answer": "No documents have been indexed yet. "
+            "Please click 'Indexing for chat' first.",
             "sources": [],
         }
 
