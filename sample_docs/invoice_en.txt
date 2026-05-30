@@ -1,0 +1,43 @@
+INVOICE
+
+Supplier:    AutoService Pro Ltd.
+             45 Industrial Park Road
+             Birmingham, B12 9QT
+             United Kingdom
+             VAT No: GB123456789
+
+Invoice No:  INV-2024-00391
+Invoice Date: 14 March 2024
+Due Date:    28 March 2024
+
+Bill To:
+Fleet Solutions UK Ltd.
+22 Corporate Drive
+Manchester, M1 4BT
+
+Vehicle Details:
+Make & Model:   Ford Transit Custom
+Registration:   MK23 XYZ
+VIN:            WF0WXXTTGWKJ12345
+Mileage:        48,320 km
+
+-------------------------------------------------------------
+Description                        Qty    Unit Price    Total
+-------------------------------------------------------------
+Annual Service & Oil Change          1      £185.00    £185.00
+Front Brake Pads Replacement         1      £220.00    £220.00
+Air Filter Replacement               1       £45.00     £45.00
+Tyre Rotation (4 tyres)              1       £35.00     £35.00
+Labour (3.5 hrs @ £75/hr)            1      £262.50    £262.50
+-------------------------------------------------------------
+Subtotal (excl. VAT):                                  £747.50
+VAT (20%):                                             £149.50
+TOTAL AMOUNT DUE:                                      £897.00
+-------------------------------------------------------------
+
+Payment Terms: 14 days from invoice date
+Bank: Barclays Business
+Account No: 12345678   Sort Code: 20-00-00
+Reference: INV-2024-00391
+
+Notes: Next service due at 68,320 km or 12 months, whichever comes first.
