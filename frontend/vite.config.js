@@ -18,6 +18,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (p) => p.replace(/^\/api\/rag/, ""),
       },
+      "/api/agent": {
+        target: "http://localhost:8002",
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/api\/agent/, ""),
+      },
     },
   },
 });
