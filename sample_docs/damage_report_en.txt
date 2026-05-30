@@ -1,0 +1,61 @@
+VEHICLE DAMAGE REPORT
+
+Report No:     DMG-2024-0214
+Report Date:   22 March 2024
+Reported By:   Sarah Mitchell (Driver)
+
+FLEET DETAILS:
+Company:       Horizon Logistics Ltd.
+Fleet Manager: James Harrison
+Department:    Operations
+
+VEHICLE DETAILS:
+Make & Model:   Volkswagen Crafter 35 TDI
+Registration:   YD24 ABC
+VIN:            WV1ZZZ2EZM5012345
+Current Mileage: 6,430 miles
+
+INCIDENT DETAILS:
+Date of Incident:   21 March 2024
+Time:               14:35
+Location:           Sainsbury's Car Park, Kirkstall Road, Leeds, LS4 2QB
+Weather Conditions: Dry, clear
+Lighting:           Daylight
+
+DESCRIPTION OF INCIDENT:
+While reversing out of a parking bay, the vehicle was struck by another vehicle
+(a silver Toyota Yaris, registration KA19 PQR) that was reversing from the
+opposite bay simultaneously. The driver of the Toyota failed to check their
+mirrors before reversing.
+
+DAMAGE DESCRIPTION:
+- Rear bumper: cracked and scraped (approx. 40cm crack)
+- Rear left panel: dented and paint scraped (20cm x 15cm area)
+- Rear left tail light: cracked lens, light still functional
+- Tow bar cover: broken and missing
+
+THIRD PARTY DETAILS:
+Name:           David Thompson
+Address:        14 Maple Close, Bradford, BD5 7RT
+Phone:          07700 900123
+Insurer:        Direct Line
+Policy No:      DL-98765432
+Vehicle:        Toyota Yaris, KA19 PQR
+
+WITNESS:
+Name:           Carol Jennings
+Phone:          07911 234567
+Statement:      Witnessed the Toyota reversing without checking mirrors
+
+POLICE INVOLVED: No
+INJURIES:        None
+
+ESTIMATED REPAIR COST:  £1,450.00 (based on initial assessment by fleet repair centre)
+REPAIRER:               FleetFix UK Ltd., Leeds
+
+PHOTOS TAKEN: Yes (attached — 6 photos)
+
+Driver Declaration: I confirm the above information is accurate to the best of my knowledge.
+
+Driver Signature: ___________________   Date: 22/03/2024
+Manager Signature: __________________   Date: 22/03/2024
