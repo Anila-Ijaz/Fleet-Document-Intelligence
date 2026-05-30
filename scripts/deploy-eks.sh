@@ -53,4 +53,4 @@ done
 echo ""
 echo "Deployed to EKS. Get the load balancer URL with:"
 echo "  kubectl -n fleet get ingress fleet-ingress"
-echo "REMEMBER to tear down when finished: ./scripts/eks-teardown.sh"
+echo "REMEMBER to tear down the cluster when finished: ./scripts/eks-teardown.sh"
