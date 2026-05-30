@@ -38,14 +38,15 @@ def ensure_schema() -> None:
                 """
             )
         )
-        # IVFFlat index for fast approximate cosine search. Created after some data
-        # exists in production; safe to create early for a portfolio-scale dataset.
+        # Drop the old IVFFlat index if it exists — IVFFlat requires at least
+        # as many rows as `lists` (100) to work; with small datasets it returns
+        # zero results. HNSW works correctly for any dataset size.
+        conn.execute(text("DROP INDEX IF EXISTS doc_chunks_embedding_idx"))
         conn.execute(
             text(
                 """
-                CREATE INDEX IF NOT EXISTS doc_chunks_embedding_idx
-                ON doc_chunks USING ivfflat (embedding vector_cosine_ops)
-                WITH (lists = 100)
+                CREATE INDEX IF NOT EXISTS doc_chunks_embedding_hnsw_idx
+                ON doc_chunks USING hnsw (embedding vector_cosine_ops)
                 """
             )
         )
