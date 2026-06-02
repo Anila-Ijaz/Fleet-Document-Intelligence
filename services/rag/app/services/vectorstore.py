@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import logging
 
-from langchain.text_splitter.recursive_character_text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sqlalchemy import text
 
 from app.core.config import get_settings

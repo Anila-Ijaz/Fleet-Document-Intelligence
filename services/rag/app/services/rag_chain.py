@@ -70,7 +70,7 @@ def answer_question(question: str, top_k: int | None = None) -> dict:
 
     sources = [
         {
-            "marker": f"Quelle {i}",
+            "marker": f"Source {i}",
             "document_id": c["document_id"],
             "filename": c["filename"],
             "chunk_index": c["chunk_index"],

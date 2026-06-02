@@ -150,7 +150,7 @@ def build_agent():
     graph.add_node("classify_risk", classify_risk)
     graph.add_node("detect_anomalies", detect_anomalies)
     graph.add_node("decide_action", decide_action)
-    graph.add_node("draft_reply", draft_reply)
+    graph.add_node("compose_reply", draft_reply)
     graph.add_node("finalize", finalize)
 
     graph.set_entry_point("classify_risk")
@@ -159,9 +159,9 @@ def build_agent():
     graph.add_conditional_edges(
         "decide_action",
         route_after_action,
-        {"draft_reply": "draft_reply", "finalize": "finalize"},
+        {"draft_reply": "compose_reply", "finalize": "finalize"},
     )
-    graph.add_edge("draft_reply", END)
+    graph.add_edge("compose_reply", END)
     graph.add_edge("finalize", END)
 
     return graph.compile()
