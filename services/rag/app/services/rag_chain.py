@@ -40,7 +40,7 @@ def _format_context(chunks: list[dict]) -> str:
     blocks = []
     for i, c in enumerate(chunks, start=1):
         blocks.append(
-            f"[Quelle {i}] (Dokument: {c['filename']}, Abschnitt {c['chunk_index']})\n"
+            f"[Source {i}] (Document: {c['filename']}, Section {c['chunk_index']})\n"
             f"{c['content']}"
         )
     return "\n\n".join(blocks)

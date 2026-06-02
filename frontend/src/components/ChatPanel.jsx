@@ -24,17 +24,17 @@ export default function ChatPanel() {
 
   return (
     <div className="panel" style={{ gridColumn: "1 / -1" }}>
-      <h2>Dokumenten-Chat (RAG)</h2>
+      <h2>Document Chat (RAG)</h2>
       <div className="chat-log">
         {log.length === 0 && (
           <p className="status">
-            Frage etwas über die hochgeladenen Dokumente, z. B.{" "}
-            „Wie hoch ist die monatliche Leasingrate?"
+            Ask something about the uploaded documents, e.g.{" "}
+            "What is the total amount of the invoice?"
           </p>
         )}
         {log.map((m, i) => (
           <div key={i} className={`msg ${m.role}`}>
-            <span className="who">{m.role === "user" ? "Du" : "Assistent"}</span>
+            <span className="who">{m.role === "user" ? "You" : "Assistant"}</span>
             {m.text}
             {m.sources?.length > 0 && (
               <div className="sources">
@@ -50,8 +50,8 @@ export default function ChatPanel() {
         ))}
         {loading && (
           <div className="msg bot">
-            <span className="who">Assistent</span>
-            <span className="spinner">Denke nach…</span>
+            <span className="who">Assistant</span>
+            <span className="spinner">Thinking…</span>
           </div>
         )}
       </div>
@@ -60,10 +60,10 @@ export default function ChatPanel() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send()}
-          placeholder="Frage auf Deutsch stellen…"
+          placeholder="Ask a question about your documents…"
         />
         <button onClick={send} disabled={loading}>
-          Senden
+          Send
         </button>
       </div>
     </div>
