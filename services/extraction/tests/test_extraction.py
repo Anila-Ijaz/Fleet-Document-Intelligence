@@ -10,7 +10,7 @@ import pytest
 
 from app.models.schemas import DocumentType, ExtractedFields
 from app.services import extractor
-from app.services.text_extraction import extract_text
+from app.services.text_extraction import extract_text, _ocr_pdf_page
 
 
 def test_extract_text_from_plain_text():
@@ -56,3 +56,35 @@ def test_extract_fields_uses_structured_output():
 def test_empty_text_raises():
     with pytest.raises(ValueError):
         extractor.extract_fields("   ")
+
+
+def test_image_file_type_accepted():
+    """PNG/JPG files are accepted and routed to OCR (mocked here)."""
+    with patch("app.services.text_extraction._ocr_image", return_value="Invoice total 500 EUR"):
+        text = extract_text("scan.png", b"fake-image-bytes")
+    assert "Invoice total 500 EUR" in text
+
+
+def test_ocr_fallback_for_scanned_pdf():
+    """When pypdf returns no text (scanned PDF), OCR is attempted per page."""
+    from unittest.mock import MagicMock
+    from pypdf import PdfReader
+
+    mock_page = MagicMock()
+    mock_page.extract_text.return_value = ""
+
+    with patch("app.services.text_extraction.PdfReader") as mock_reader_cls:
+        mock_reader_cls.return_value.pages = [mock_page]
+        with patch("app.services.text_extraction._ocr_pdf_page", return_value="Scanned invoice 862 EUR") as mock_ocr:
+            text = extract_text("scanned.pdf", b"fake-pdf")
+
+    mock_ocr.assert_called_once_with(b"fake-pdf", 0)
+    assert "Scanned invoice 862 EUR" in text
+
+
+def test_ocr_graceful_fallback_when_not_installed():
+    """If pytesseract is not installed, OCR returns empty string without crashing."""
+    import sys
+    with patch.dict(sys.modules, {"pytesseract": None, "pdf2image": None}):
+        result = _ocr_pdf_page(b"fake-pdf", 0)
+    assert result == ""

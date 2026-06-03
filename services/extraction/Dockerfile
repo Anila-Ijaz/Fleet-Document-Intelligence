@@ -19,6 +19,13 @@ FROM python:3.12-slim AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PATH="/opt/venv/bin:$PATH"
 WORKDIR /app
 
+# System deps for OCR: tesseract (engine) + German language pack + poppler (pdf2image)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    tesseract-ocr \
+    tesseract-ocr-deu \
+    poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder /opt/venv /opt/venv
 COPY app ./app
 
