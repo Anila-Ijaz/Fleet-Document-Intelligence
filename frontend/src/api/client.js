@@ -1,8 +1,18 @@
-// Thin API client. Uses the Vite proxy paths in dev; configurable base for prod.
+// API client — uses direct Render URLs in production, Vite proxy paths in local dev.
 
-const EXTRACT = "/api/extract";
-const RAG = "/api/rag";
-const AGENT = "/api/agent";
+const IS_DEV = import.meta.env.DEV;
+
+const EXTRACT = IS_DEV
+  ? "/api/extract"
+  : "https://fleet-document-intelligence.onrender.com";
+
+const RAG = IS_DEV
+  ? "/api/rag"
+  : "https://rag-chatbot-cs9e.onrender.com";
+
+const AGENT = IS_DEV
+  ? "/api/agent"
+  : "https://agent-service-4jxu.onrender.com";
 
 export async function uploadDocument(file) {
   const form = new FormData();
