@@ -1,0 +1,9 @@
+INVOICE
+
+Supplier: Unknown Vendor
+Invoice No: INV-9999
+Vehicle: BMW X5
+
+Total Amount: 9500.00 EUR
+
+Payment due: 30 days

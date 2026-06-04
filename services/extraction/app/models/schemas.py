@@ -63,8 +63,8 @@ class ExtractedFields(BaseModel):
     net_amount: float | None = Field(default=None, description="Net total")
     vat_amount: float | None = Field(default=None, description="VAT / tax amount")
     gross_amount: float | None = Field(default=None, description="Gross total")
-    line_items: list[LineItem] = Field(
-        default_factory=list, description="Itemised lines, if any"
+    line_items: list[LineItem] | None = Field(
+        default=None, description="Itemised lines, if any"
     )
 
     # Leasing-specific
