@@ -68,12 +68,11 @@ def test_image_file_type_accepted():
 def test_ocr_fallback_for_scanned_pdf():
     """When pypdf returns no text (scanned PDF), OCR is attempted per page."""
     from unittest.mock import MagicMock
-    from pypdf import PdfReader
 
     mock_page = MagicMock()
     mock_page.extract_text.return_value = ""
 
-    with patch("app.services.text_extraction.PdfReader") as mock_reader_cls:
+    with patch("pypdf.PdfReader") as mock_reader_cls:
         mock_reader_cls.return_value.pages = [mock_page]
         with patch("app.services.text_extraction._ocr_pdf_page", return_value="Scanned invoice 862 EUR") as mock_ocr:
             text = extract_text("scanned.pdf", b"fake-pdf")
