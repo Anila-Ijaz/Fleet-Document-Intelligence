@@ -20,3 +20,6 @@ htmlcov/
 # IDE
 .idea/
 .vscode/
+
+# Claude session memory — never commit
+CLAUDE_MEMORY.md
