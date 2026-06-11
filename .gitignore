@@ -23,3 +23,7 @@ htmlcov/
 
 # Claude session memory — never commit
 CLAUDE_MEMORY.md
+
+# Private interview prep — never commit
+docs/interview-qa.html
+docs/case-study-upwork.html

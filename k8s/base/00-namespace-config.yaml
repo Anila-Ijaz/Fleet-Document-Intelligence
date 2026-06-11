@@ -29,4 +29,4 @@ type: Opaque
 stringData:
   # Replace via: kubectl -n fleet create secret generic fleet-secrets \
   #   --from-literal=OPENAI_API_KEY=sk-... --dry-run=client -o yaml | kubectl apply -f -
-  OPENAI_API_KEY: "REPLACE_ME"
+  OPENAI_API_KEY: "sk-replace-with-your-real-key"
