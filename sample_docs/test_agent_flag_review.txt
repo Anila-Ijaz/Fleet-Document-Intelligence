@@ -1,0 +1,25 @@
+RECHNUNG
+
+Rechnungsnummer: RE-2026-00555
+Rechnungsdatum: 10.06.2026
+
+Fahrzeug: Audi A4 Avant
+Fahrgestellnummer (FIN): WAUZZZ8K9BA012345
+Kennzeichen: HH-XY 9910
+
+Position                          Menge    Einzelpreis    Gesamt
+Unfallreparatur Stoßstange hinten   1     1.200,00 EUR   1.200,00 EUR
+Lackierung komplett                 1       950,00 EUR     950,00 EUR
+Mietfahrzeug (5 Tage)               5       120,00 EUR     600,00 EUR
+
+Nettobetrag:                                            2.750,00 EUR
+MwSt. 19%:                                               522,50 EUR
+Gesamtbetrag (Brutto):                                  3.272,50 EUR
+
+Zahlbar innerhalb von 30 Tagen.
+
+--- ERWARTETES AGENTEN-ERGEBNIS ---
+Aktion: flag_for_review
+Grund: Lieferantenname fehlt komplett (kein Absender im Dokument).
+Mittlerer Betrag (3.272,50 EUR). Dokument muss von einem Mitarbeiter
+geprüft werden bevor es freigegeben wird.
