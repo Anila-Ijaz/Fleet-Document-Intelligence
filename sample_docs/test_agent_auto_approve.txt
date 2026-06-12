@@ -1,0 +1,30 @@
+Autohaus Berlin GmbH
+Kurfürstendamm 22
+10719 Berlin
+
+RECHNUNG
+
+Rechnungsnummer: RE-2026-00101
+Rechnungsdatum: 10.06.2026
+Lieferant: Autohaus Berlin GmbH
+Kunde: Alphabet Fleet Management GmbH
+
+Fahrzeug: MINI Cooper SE
+Fahrgestellnummer (FIN): WMW12345678901234
+Kennzeichen: B-FL 4421
+
+Position                          Menge    Einzelpreis    Gesamt
+Hauptuntersuchung (TÜV)             1       120,00 EUR     120,00 EUR
+Scheibenreinigungsanlage prüfen     1        35,00 EUR      35,00 EUR
+Luftfilter wechseln                 1        55,00 EUR      55,00 EUR
+
+Nettobetrag:                                              210,00 EUR
+MwSt. 19%:                                                 39,90 EUR
+Gesamtbetrag (Brutto):                                    249,90 EUR
+
+Zahlbar innerhalb von 14 Tagen.
+
+--- ERWARTETES AGENTEN-ERGEBNIS ---
+Aktion: auto_approve
+Grund: Kleiner Betrag (249,90 EUR), alle Pflichtfelder vorhanden,
+bekannter Lieferant. Keine Auffälligkeiten.
