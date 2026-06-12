@@ -26,7 +26,7 @@ pipelines, AI agents, n8n workflows, and cloud deployment.
 
 > **Status:** Feature-complete across all 7 build phases — document extraction, RAG
 > chatbot, LangGraph triage agent, n8n orchestration, React frontend, Kubernetes
-> manifests (local `kind` + AWS EKS), and CI. Deployed and live.
+> manifests (local `kind`), and CI. Deployed and live.
 
 ## Live Demo
 
