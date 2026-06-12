@@ -9,7 +9,7 @@
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
 ![n8n](https://img.shields.io/badge/n8n-workflow-EA4B71?logo=n8n&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-kind%20%2B%20EKS-326CE5?logo=kubernetes&logoColor=white)
+![Render](https://img.shields.io/badge/Render-deployed-46E3B7?logo=render&logoColor=white)
 ![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)
 
 An end-to-end **AI-supported process automation** system for **fleet leasing** — the
@@ -24,8 +24,8 @@ AI-supported process automation" role: LLMs and RAG, structured extraction, data
 pipelines, AI agents, n8n workflows, and cloud deployment.
 
 > **Status:** Feature-complete across all 7 build phases — document extraction, RAG
-> chatbot, LangGraph triage agent, n8n orchestration, React frontend, Kubernetes
-> manifests (local `kind`), and CI. Deployed and live.
+> chatbot, LangGraph triage agent, n8n orchestration, React frontend, and CI.
+> Deployed and live on Render.
 
 ## Live Demo
 
@@ -57,7 +57,7 @@ This table maps the project directly onto the BMW Group / Alphabet job requireme
 | Workflow automation with n8n | `n8n/workflows/fleet_document_intake.json` |
 | Data pipelines / ETL / databases | Postgres + pgvector + SQLAlchemy, document→fields→embeddings flow |
 | Provider-agnostic AI (OpenAI / Anthropic / Bedrock / Ollama) | each service's `core/llm.py` — switch with one env var |
-| Cloud environments (Azure, AWS) | `k8s/` manifests + `scripts/deploy-eks.sh` (AWS EKS + ECR) |
+| Cloud deployment | All services deployed on Render |
 | German language | German prompts, German sample documents, German UI |
 | Structured, production-minded engineering | tests, CI (`.github/workflows/ci.yml`), multi-stage non-root Docker |
 
@@ -88,13 +88,13 @@ This table maps the project directly onto the BMW Group / Alphabet job requireme
                   │  documents · embeddings  │   │ LLM + embeds │
                   └─────────────────────────┘   └──────────────┘
 
-  Deployment: Render (live) · Docker Compose (local) · Kubernetes on kind (local) · AWS EKS (cloud)
+  Deployment: Render (live) · Docker Compose (local)
 ```
 
 The **n8n workflow** orchestrates the pipeline: a document hits a webhook, gets its
 fields extracted, is triaged by the **LangGraph agent**, then routed (auto-approve /
 review / escalate). The **RAG service** answers questions over the whole corpus
-with citations. All four app services are containerised and deployable to Kubernetes.
+with citations. All services are containerised and deployed on Render.
 
 ## Switching LLM provider
 
@@ -126,8 +126,6 @@ all of these on every push — see `.github/workflows/ci.yml`.
 ## Deployment
 
 - **Live (Render):** [https://frontend-1plp.onrender.com/](https://frontend-1plp.onrender.com/)
-- **Local Kubernetes (kind):** `./scripts/deploy-kind.sh` — free, proves the manifests work
-- **AWS EKS:** see `k8s/README.md` for the full guide (includes cost warnings + teardown)
 
 ## Local development
 
@@ -166,27 +164,24 @@ npm run dev          # proxies to the running backend services
 - [x] **Phase 2** — RAG chatbot over the corpus (pgvector, citations, Q&A)
 - [x] **Phase 3** — LangGraph triage agent + n8n ingest/orchestration workflow
 - [x] **Phase 4** — React frontend (upload + chat + review queue)
-- [x] **Phase 5** — Kubernetes manifests, runs on local `kind` (`scripts/deploy-kind.sh`)
-- [x] **Phase 6** — AWS EKS deployment (ECR images, `scripts/deploy-eks.sh`, see `k8s/README.md`)
-- [x] **Phase 7** — CI (GitHub Actions), tests across services, architecture docs
-- [x] **Phase 8** — Live deployment on Render
+- [x] **Phase 5** — CI (GitHub Actions), tests across services, architecture docs
+- [x] **Phase 6** — Live deployment on Render
 
 ### Possible future work
-- Replace in-cluster Postgres with Amazon RDS (pgvector) for a managed database
 - OCR for scanned PDFs (pytesseract) in the extraction service
 - A demo GIF in this README
 
 ## Tech stack
 
 **Backend & AI:** Python 3.12 · FastAPI · LangChain · Pydantic v2 · OpenAI
-(gpt-4o-mini + text-embedding-3-small) — provider-agnostic, also supports Anthropic,
-AWS Bedrock, and local Ollama
+(gpt-4o-mini + text-embedding-3-small) — provider-agnostic, also supports Anthropic
+and local Ollama
 
 **Data:** PostgreSQL 16 · pgvector (vector similarity search) · SQLAlchemy 2.0
 
 **Frontend:** React 18 · Vite · nginx (production serving + API proxy)
 
-**Infrastructure:** Docker · Docker Compose · Kubernetes + AWS EKS · Render (live hosting)
+**Infrastructure:** Docker · Docker Compose · Render (live hosting)
 
 **Quality:** pytest (LLM mocked for fast, deterministic tests) · type hints · multi-stage
 Docker builds running as non-root
