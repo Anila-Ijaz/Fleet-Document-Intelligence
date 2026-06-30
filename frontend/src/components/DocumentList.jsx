@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { listDocuments, reindexAll } from "../api/client";
+import { listDocuments, reindexAll, deleteDocument } from "../api/client";
 
 export default function DocumentList({ refreshKey }) {
   const [docs, setDocs] = useState([]);
   const [indexing, setIndexing] = useState(false);
   const [status, setStatus] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
   async function load() {
     try {
@@ -31,13 +32,26 @@ export default function DocumentList({ refreshKey }) {
     }
   }
 
+  async function handleDelete(doc) {
+    if (!window.confirm(`"${doc.filename}" löschen?`)) return;
+    setDeletingId(doc.id);
+    try {
+      await deleteDocument(doc.id);
+      setDocs((prev) => prev.filter((d) => d.id !== doc.id));
+    } catch (e) {
+      setStatus(`Fehler beim Löschen: ${e.message}`);
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
   return (
     <div className="panel">
       <h2>Dokumente</h2>
       {docs.length === 0 && <p className="status">Noch keine Dokumente.</p>}
       {docs.map((d) => (
         <div className="doc-row" key={d.id}>
-          <div>
+          <div style={{ flex: 1, minWidth: 0 }}>
             <div className="fn">{d.filename}</div>
             <div className="sub">
               {d.supplier_name || "—"}
@@ -49,6 +63,24 @@ export default function DocumentList({ refreshKey }) {
           <span className={`badge ${d.needs_review ? "review" : "ok"}`}>
             {d.needs_review ? "Prüfen" : "OK"}
           </span>
+          <button
+            onClick={() => handleDelete(d)}
+            disabled={deletingId === d.id}
+            title="Dokument löschen"
+            style={{
+              background: "transparent",
+              border: "1px solid #555",
+              color: "#e05",
+              borderRadius: 4,
+              cursor: "pointer",
+              padding: "2px 8px",
+              fontSize: 14,
+              lineHeight: 1,
+              opacity: deletingId === d.id ? 0.4 : 1,
+            }}
+          >
+            ×
+          </button>
         </div>
       ))}
       <div style={{ marginTop: 18 }}>
