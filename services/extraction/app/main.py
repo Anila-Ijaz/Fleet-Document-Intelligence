@@ -117,6 +117,18 @@ def list_documents(
         ]
 
 
+@app.delete("/documents/{doc_id}", status_code=204)
+def delete_document(doc_id: int) -> None:
+    with db.get_session() as session:
+        r = session.get(db.Document, doc_id)
+        if not r:
+            raise HTTPException(status_code=404, detail="Document not found.")
+        session.delete(r)
+        session.commit()
+    db.delete_document_chunks(doc_id)
+    logger.info("Deleted document id=%s", doc_id)
+
+
 @app.get("/documents/{doc_id}")
 def get_document(doc_id: int) -> dict:
     with db.get_session() as session:
