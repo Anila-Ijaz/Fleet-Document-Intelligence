@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from sqlalchemy import JSON, DateTime, Float, String, Text, create_engine, func
+from sqlalchemy import JSON, DateTime, Float, String, Text, create_engine, func, text
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, sessionmaker
 
 from app.core.config import get_settings
@@ -61,3 +61,17 @@ def create_tables() -> None:
 def get_session() -> Session:
     init_engine()
     return _SessionLocal()
+
+
+def delete_document_chunks(doc_id: int) -> None:
+    """Remove RAG embeddings for a document. No-op if the table does not exist yet."""
+    init_engine()
+    try:
+        with _SessionLocal() as session:
+            session.execute(
+                text("DELETE FROM doc_chunks WHERE document_id = :doc_id"),
+                {"doc_id": doc_id},
+            )
+            session.commit()
+    except Exception:
+        pass
