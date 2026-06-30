@@ -19,9 +19,9 @@ reports, vehicle registrations), uses a Large Language Model to **extract struct
 validated data**, stores it, and lets staff query the whole corpus through a RAG
 chatbot — replacing slow, manual document handling with an automated pipeline.
 
-Built specifically to demonstrate the skills in BMW Group / Alphabet's "Developer for
-AI-supported process automation" role: LLMs and RAG, structured extraction, data
-pipelines, AI agents, n8n workflows, and cloud deployment.
+Built to demonstrate production-ready skills in AI-supported process automation:
+LLMs and RAG, structured extraction, data pipelines, AI agents, n8n workflows,
+and cloud deployment.
 
 > **Status:** Feature-complete across all 7 build phases — document extraction, RAG
 > chatbot, LangGraph triage agent, n8n orchestration, React frontend, and CI.
@@ -47,7 +47,7 @@ pipelines, AI agents, n8n workflows, and cloud deployment.
 
 ## Why this design
 
-This table maps the project directly onto the BMW Group / Alphabet job requirements:
+This table maps each component of the project to the core skills it demonstrates:
 
 | Job requirement | Where it lives in this repo |
 |---|---|
