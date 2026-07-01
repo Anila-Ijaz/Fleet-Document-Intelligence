@@ -50,6 +50,11 @@ export async function triageDocument(docId) {
   return res.json();
 }
 
+export async function deleteDocument(id) {
+  const res = await fetch(`${EXTRACT}/documents/${id}`, { method: "DELETE" });
+  if (!res.ok) throw new Error((await res.json()).detail || "Delete failed");
+}
+
 export async function listNeedsReview() {
   const res = await fetch(`${EXTRACT}/documents?needs_review=true`);
   if (!res.ok) throw new Error("Failed to load review queue");
