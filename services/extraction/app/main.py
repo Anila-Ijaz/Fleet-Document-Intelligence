@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import logging
 
-from fastapi import FastAPI, File, HTTPException, Query, UploadFile
+from fastapi import FastAPI, File, HTTPException, Query, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import get_settings
@@ -118,7 +118,7 @@ def list_documents(
 
 
 @app.delete("/documents/{doc_id}", status_code=204)
-def delete_document(doc_id: int) -> None:
+def delete_document(doc_id: int) -> Response:
     with db.get_session() as session:
         r = session.get(db.Document, doc_id)
         if not r:
@@ -127,6 +127,7 @@ def delete_document(doc_id: int) -> None:
         session.commit()
     db.delete_document_chunks(doc_id)
     logger.info("Deleted document id=%s", doc_id)
+    return Response(status_code=204)
 
 
 @app.get("/documents/{doc_id}")
