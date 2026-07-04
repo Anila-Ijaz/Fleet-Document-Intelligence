@@ -29,7 +29,7 @@ and cloud deployment.
 
 ## Live Demo
 
-**Try the application here:** [https://frontend-1plp.onrender.com/](https://frontend-1plp.onrender.com/)
+**Try the application:** [https://frontend-1plp.onrender.com/](https://frontend-1plp.onrender.com/)
 
 > **Note:** The app is hosted on Render's free tier. If the page takes 30–60 seconds
 > to load on first visit, the service is spinning up from idle — just wait and refresh.
