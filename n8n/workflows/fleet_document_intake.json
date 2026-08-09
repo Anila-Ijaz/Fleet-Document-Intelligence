@@ -18,7 +18,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "http://extraction:8000/documents",
+        "url": "https://fleet-document-intelligence.onrender.com/documents",
         "sendBody": true,
         "contentType": "multipart-form-data",
         "bodyParameters": {
@@ -41,7 +41,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "http://agent:8000/triage",
+        "url": "https://agent-service-4jxu.onrender.com/triage",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ JSON.stringify({\n  document_type: $json.fields.document_type,\n  confidence: $json.confidence,\n  gross_amount: $json.fields.gross_amount,\n  supplier_name: $json.fields.supplier_name,\n  summary: $json.fields.summary\n}) }}",
