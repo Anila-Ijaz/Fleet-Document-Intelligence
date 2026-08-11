@@ -19,7 +19,10 @@
       "name": "Document Received (Webhook)",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
-      "position": [240, 300],
+      "position": [
+        240,
+        300
+      ],
       "webhookId": "fleet-intake"
     },
     {
@@ -43,7 +46,10 @@
       "name": "Extract Fields (LLM)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [460, 300]
+      "position": [
+        460,
+        300
+      ]
     },
     {
       "parameters": {
@@ -51,14 +57,17 @@
         "url": "https://agent-service-4jxu.onrender.com/triage",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({\n  document_type: $json.fields.document_type,\n  confidence: $json.confidence,\n  gross_amount: $json.fields.gross_amount,\n  supplier_name: $json.fields.supplier_name,\n  summary: $json.fields.summary\n}) }}",
+        "jsonBody": "={{ JSON.stringify({ document_type: $json.fields.document_type, confidence: $json.confidence, gross_amount: $json.fields.gross_amount, supplier_name: $json.fields.supplier_name, summary: $json.fields.summary }) }}",
         "options": {}
       },
       "id": "c3d4e5f6-a7b8-4901-cdef-234567890123",
       "name": "Triage (LangGraph Agent)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [680, 300]
+      "position": [
+        680,
+        300
+      ]
     },
     {
       "parameters": {
@@ -66,12 +75,17 @@
           "values": [
             {
               "conditions": {
-                "options": { "caseSensitive": true },
+                "options": {
+                  "caseSensitive": true
+                },
                 "conditions": [
                   {
                     "leftValue": "={{ $json.action }}",
                     "rightValue": "escalate",
-                    "operator": { "type": "string", "operation": "equals" }
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
                   }
                 ]
               },
@@ -79,12 +93,17 @@
             },
             {
               "conditions": {
-                "options": { "caseSensitive": true },
+                "options": {
+                  "caseSensitive": true
+                },
                 "conditions": [
                   {
                     "leftValue": "={{ $json.action }}",
                     "rightValue": "flag_for_review",
-                    "operator": { "type": "string", "operation": "equals" }
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
                   }
                 ]
               },
@@ -99,7 +118,10 @@
       "name": "Route by Action",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
-      "position": [900, 300]
+      "position": [
+        900,
+        300
+      ]
     },
     {
       "parameters": {
@@ -118,7 +140,10 @@
       "name": "Notify: Escalate",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [1140, 180]
+      "position": [
+        1140,
+        180
+      ]
     },
     {
       "parameters": {
@@ -137,7 +162,10 @@
       "name": "Queue: Review",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [1140, 300]
+      "position": [
+        1140,
+        300
+      ]
     },
     {
       "parameters": {
@@ -156,28 +184,137 @@
       "name": "Auto-Approve",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [1140, 420]
+      "position": [
+        1140,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "outcome",
+              "value": "={{ $json.outcome }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b8c9d0e1-f2a3-4456-1234-789012345678",
+      "name": "Final Output",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1380,
+        300
+      ]
     }
   ],
   "connections": {
     "Document Received (Webhook)": {
-      "main": [[{ "node": "Extract Fields (LLM)", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Extract Fields (LLM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Extract Fields (LLM)": {
-      "main": [[{ "node": "Triage (LangGraph Agent)", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Triage (LangGraph Agent)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Triage (LangGraph Agent)": {
-      "main": [[{ "node": "Route by Action", "type": "main", "index": 0 }]]
+      "main": [
+        [
+          {
+            "node": "Route by Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     },
     "Route by Action": {
       "main": [
-        [{ "node": "Notify: Escalate", "type": "main", "index": 0 }],
-        [{ "node": "Queue: Review", "type": "main", "index": 0 }],
-        [{ "node": "Auto-Approve", "type": "main", "index": 0 }]
+        [
+          {
+            "node": "Notify: Escalate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Queue: Review",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Auto-Approve",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify: Escalate": {
+      "main": [
+        [
+          {
+            "node": "Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Queue: Review": {
+      "main": [
+        [
+          {
+            "node": "Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-Approve": {
+      "main": [
+        [
+          {
+            "node": "Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
   "active": false,
-  "settings": { "executionOrder": "v1" },
-  "tags": [{ "name": "fleet" }, { "name": "document-automation" }]
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "fleet"
+    },
+    {
+      "name": "document-automation"
+    }
+  ]
 }
