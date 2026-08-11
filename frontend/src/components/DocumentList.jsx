@@ -69,19 +69,13 @@ export default function DocumentList({ refreshKey }) {
             title="Dokument löschen"
             style={{
               background: "transparent",
-              border: "1px solid #444",
+              border: "1px solid #555",
               color: "#e05",
-              borderRadius: 3,
+              borderRadius: 4,
               cursor: "pointer",
-              padding: "2px 6px",
-              fontSize: 13,
+              padding: "2px 8px",
+              fontSize: 14,
               lineHeight: 1,
-              minWidth: "unset",
-              width: 24,
-              height: 22,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               opacity: deletingId === d.id ? 0.4 : 1,
             }}
           >
